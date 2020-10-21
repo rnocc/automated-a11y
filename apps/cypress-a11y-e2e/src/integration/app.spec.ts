@@ -3,6 +3,7 @@ import {
   addAstronautForm,
   header,
 } from '../support/app.po';
+import { defaultAxeConfiguration } from '../support/axe-configuration';
 
 describe('Astronaut Directory', () => {
   beforeEach(() => cy.visit('/'));
@@ -14,11 +15,10 @@ describe('Astronaut Directory', () => {
   describe('a11y', () => {
     beforeEach(() => {
       cy.injectAxe();
+      cy.configureAxe(defaultAxeConfiguration);
     });
     it('should not have detectable a11y errors on load', () => {
-      cy.checkA11y(null, {
-        includedImpacts: ['critical'],
-      });
+      cy.checkA11y(null, { includedImpacts: ['critical'] });
     });
 
     // check full page after opening modal
