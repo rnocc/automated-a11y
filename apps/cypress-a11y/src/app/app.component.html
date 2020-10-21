@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <h1>Astronaut Directory</h1>
-  <button mat-button [matMenuTriggerFor]="menu">
+  <button mat-button [matMenuTriggerFor]="menu" aria-label="User profile menu">
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -50,7 +50,7 @@
   <mat-sidenav-content role="region">
     <mat-card *ngFor="let astronaut of astronauts | async">
       <mat-card-title>{{ astronaut.name }}</mat-card-title>
-      <img mat-card-image [src]="astronaut.photo" />
+      <img mat-card-image [src]="astronaut.photo" [attr.alt]="astronaut.name" />
       <mat-card-content>
         <dl>
           <dt class="mat-small">Name</dt>
@@ -64,6 +64,11 @@
     </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<button mat-fab (click)="addAstronaut()" e2e="add-astronaut-button">
+<button
+  mat-fab
+  (click)="addAstronaut()"
+  e2e="add-astronaut-button"
+  aria-label="Add astronaut"
+>
   <mat-icon>add</mat-icon>
 </button>
